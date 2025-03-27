@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Secure File Upload</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #eef2f3, #8e9eab);
+    }
+
+    .container {
+      background-color: white;
+      padding: 2rem 3rem;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 1.5rem;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      margin-bottom: 0.3rem;
+      font-weight: 500;
+      color: #444;
+    }
+
+    input[type="text"],
+    input[type="file"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    input[type="submit"] {
+      width: 100%;
+      padding: 12px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    .footer {
+      margin-top: 1rem;
+      font-size: 0.85em;
+      color: #777;
+    }
+
+    .success-message {
+      background-color: #e0f7e9;
+      border-left: 4px solid #2ecc71;
+      color: #2d5f2e;
+      padding: 12px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>🔐 Secure File Upload</h2>
+
+    {% if message %}
+      <div class="success-message">
+        ✅ {{ message }}<br>
+        📂 File Name: <strong>{{ blob_name }}</strong>
+      </div>
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data" action="/upload">
+      <label>👤 From User ID:</label>
+      <input type="text" name="from_user" required>
+
+      <label>📨 To Slack Channel/User ID:</label>
+      <input type="text" name="to_user" required>
+
+      <label>📎 Select File:</label>
+      <input type="file" name="file" required>
+
+      <input type="submit" value="🚀 Upload Now">
+    </form>
+
+    <div class="footer">
+      Your file will be securely stored and classified.
+    </div>
+  </div>
+
+</body>
+</html>
